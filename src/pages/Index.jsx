@@ -1,36 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Rocket, Comet, CreditCard, Users } from 'lucide-react';
+import React from 'react';
+import { Rocket, CreditCard, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 
-const StreamingComet = () => {
-  const [position, setPosition] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPosition(prev => (prev + 2) % 100);
-    }, 50);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="relative w-16 h-16">
-      <Comet
-        size={64}
-        className="text-blue-400 absolute top-0 left-0"
-        style={{ 
-          transform: `translateX(${position}%)`,
-          filter: `blur(${Math.sin(position / 10) * 2}px) brightness(${1 + Math.sin(position / 10) * 0.5})`
-        }}
-      />
-    </div>
-  );
-};
+const Starburst = () => (
+  <div className="relative w-16 h-16">
+    <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping"></div>
+    <div className="absolute inset-2 bg-purple-500 rounded-full animate-pulse"></div>
+    <div className="absolute inset-4 bg-pink-500 rounded-full animate-pulse delay-75"></div>
+    <div className="absolute inset-6 bg-yellow-500 rounded-full animate-pulse delay-150"></div>
+  </div>
+);
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <Card className="bg-gray-800 text-white">
     <CardHeader>
-      <Icon size={32} className="text-blue-400 mb-2" />
+      <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center mb-4">
+        <Icon size={24} className="text-white" />
+      </div>
       <CardTitle>{title}</CardTitle>
     </CardHeader>
     <CardContent>{description}</CardContent>
@@ -49,7 +36,7 @@ export default function CosmicJackpot() {
         </div>
         <nav>
           <ul className="flex space-x-4">
-            <li><a href="#games" className="hover:text-blue-400 transition-colors">Games</a></li>
+            <li><a href="#experiences" className="hover:text-blue-400 transition-colors">Experiences</a></li>
             <li><a href="#about" className="hover:text-blue-400 transition-colors">About</a></li>
             <li><a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a></li>
           </ul>
@@ -59,34 +46,34 @@ export default function CosmicJackpot() {
       <main className="container mx-auto px-4 py-12">
         <section className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
-            Welcome to the Future of Stellar Entertainment
+            Welcome to the Pinnacle of Cosmic Entertainment
           </h2>
           <p className="text-xl md:text-2xl mb-8 text-gray-300">
-            Experience the thrill of zero-gravity gaming in Earth's orbit!
+            Experience the thrill of zero-gravity adventures in Earth's orbit!
           </p>
           <div className="flex justify-center items-center space-x-4">
             <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-              Launch Cosmic Games
+              Explore Cosmic Experiences
             </Button>
-            <StreamingComet />
+            <Starburst />
           </div>
         </section>
 
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <FeatureCard
-            icon={Comet}
-            title="Gravity-Defying Games"
-            description="Experience classic casino games with a cosmic twist. Our zero-G roulette and nebula slots will blow your mind!"
+            icon={Rocket}
+            title="Gravity-Defying Experiences"
+            description="Immerse yourself in mind-bending zero-G activities. From cosmic roulette to nebula exploration, we redefine entertainment!"
           />
           <FeatureCard
             icon={CreditCard}
             title="Universal Currency"
-            description="Play with our proprietary StarDust Tokens, accepted across all known galaxies and easily exchangeable with Earth currencies."
+            description="Use our proprietary StarDust Tokens, accepted across all known galaxies and easily exchangeable with Earth currencies."
           />
           <FeatureCard
             icon={Users}
             title="Intergalactic Community"
-            description="Connect with players from Earth, Mars colonies, and beyond. Make friends across the solar system!"
+            description="Connect with visitors from Earth, Mars colonies, and beyond. Make friends across the solar system!"
           />
         </section>
 
@@ -112,7 +99,7 @@ export default function CosmicJackpot() {
       <footer className="bg-gray-900 py-6 px-4 text-center">
         <p>&copy; 2150 Cosmic Jackpot. All rights reserved across the known universe.</p>
         <p className="text-sm text-gray-500 mt-2">
-          Enjoying responsibly is crucial in space. Please play within your limits and don't bet your return ticket!
+          Safety is our top priority. Please follow all space regulations and enjoy responsibly!
         </p>
       </footer>
     </div>
